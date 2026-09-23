@@ -7,7 +7,6 @@ import {
   AI_TARGETS,
   DETAIL_LEVELS,
   OUTPUT_LANGUAGES,
-  EXAMPLE_PRESET,
 } from "@/lib/types";
 
 interface PromptFormProps {

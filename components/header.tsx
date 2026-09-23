@@ -3,7 +3,7 @@
 import { useTheme } from "@/lib/use-theme";
 
 export function Header() {
-  const { theme, toggle, mounted } = useTheme();
+  const { theme, toggle } = useTheme();
 
   return (
     <header className="sticky top-0 z-30 backdrop-blur-md bg-[var(--bg)]/80 border-b border-[var(--border)]">
@@ -28,9 +28,9 @@ export function Header() {
           type="button"
           onClick={toggle}
           className="inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--bg-accent)] px-3.5 py-2 text-sm font-medium text-[var(--fg)] hover:border-emerald-500/50 transition-colors"
-          aria-label={mounted && theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
+          aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
         >
-          {mounted && theme === "dark" ? (
+          {theme === "dark" ? (
             <>
               <SunIcon />
               <span className="hidden sm:inline">Light</span>

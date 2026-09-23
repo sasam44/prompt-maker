@@ -6,31 +6,31 @@ import type { HistoryEntry, GenerationRequest, GeneratedPrompt } from "./types";
 const STORAGE_KEY = "prompt-maker-history";
 const MAX_ENTRIES = 20;
 
-export function useHistory() {
-  const [entries, setEntries] = useState<HistoryEntry[]>([]);
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const parsed = JSON.parse(raw) as HistoryEntry[];
-        if (Array.isArray(parsed)) setEntries(parsed);
-      }
-    } catch {
-      // ignore corrupt storage
+function loadHistory(): HistoryEntry[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw) as HistoryEntry[];
+      if (Array.isArray(parsed)) return parsed;
     }
-    setReady(true);
-  }, []);
+  } catch {
+    // ignore corrupt storage
+  }
+  return [];
+}
 
+export function useHistory() {
+  const [entries, setEntries] = useState<HistoryEntry[]>(loadHistory);
+
+  // Persist history to localStorage whenever it changes (external system sync).
   useEffect(() => {
-    if (!ready) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
     } catch {
       // storage may be unavailable
     }
-  }, [entries, ready]);
+  }, [entries]);
 
   const addEntry = (input: GenerationRequest, result: GeneratedPrompt) => {
     const id =
@@ -54,5 +54,5 @@ export function useHistory() {
     setEntries([]);
   };
 
-  return { entries, addEntry, deleteEntry, clearHistory, ready };
+  return { entries, addEntry, deleteEntry, clearHistory };
 }
