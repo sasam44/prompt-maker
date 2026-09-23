@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #fafaf9;
+  --bg-accent: #f5f5f4;
+  --fg: #1c1917;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --card: #ffffff;
+  --emerald: #059669;
+  --amber: #d97706;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+.dark body {
+  --bg: #0c0a09;
+  --bg-accent: #1c1917;
+  --fg: #f5f5f4;
+  --muted: #a8a29e;
+  --border: #292524;
+  --card: #1c1917;
+}
+
+/* Focus states */
+:focus-visible {
+  outline: 2px solid var(--emerald);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Themed scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--muted) 40%, transparent);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--muted) 65%, transparent);
+  background-clip: content-box;
+}
+
+/* Shimmer loading */
+@layer components {
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--border) 40%, transparent) 25%,
+      color-mix(in srgb, var(--border) 90%, transparent) 37%,
+      color-mix(in srgb, var(--border) 40%, transparent) 63%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.8s ease-in-out infinite;
+    border-radius: 6px;
+  }
+
+  .card-surface {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+
+  .editorial-font {
+    font-family: "Fraunces", Georgia, serif;
+  }
+
+  .mono-font {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+}
+
+/* Subtle background texture for the prompt wordmark */
+.prompt-grid-bg {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--emerald) 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--emerald) 8%, transparent) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
