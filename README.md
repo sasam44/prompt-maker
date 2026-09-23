@@ -32,9 +32,14 @@ Transform a short idea into a complete, structured, paste-ready prompt for AI pl
 
 ## Requirements
 
-- Node.js **18.17+** (tested on Node 24)
+- Node.js **18.18+** (tested on Node 24)
 - npm (bundled with Node)
 - A **JembatanAI FreeAI API key** (base URL: `https://freeai.jembatanai.com`)
+
+## Live deployment
+
+- **Production:** https://prompt-maker-sable.vercel.app
+- **Repository:** https://github.com/sasam44/prompt-maker
 
 ---
 
@@ -164,7 +169,7 @@ Never commit `.env.local`. It is already in `.gitignore`.
 | `npm run dev`        | Start the development server         |
 | `npm run build`      | Create an optimized production build |
 | `npm run start`      | Start the production server          |
-| `npm run lint`       | Run ESLint                           |
+| `npm run lint`       | Run ESLint (flat config, `eslint .`) |
 | `npm run typecheck`  | Run TypeScript checks                |
 
 ---
