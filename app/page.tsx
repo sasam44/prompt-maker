@@ -190,7 +190,15 @@ export default function HomePage() {
             by SASAM
           </p>
           <p className="mt-4 text-xs text-[var(--muted)]">
-            Powered by the JembatanAI FreeAI API · Your API key never leaves the server.
+            built with{" "}
+            <a
+              href="https://x.com/AntSeed"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 underline underline-offset-4 transition-colors"
+            >
+              antseed
+            </a>
           </p>
         </footer>
       </main>
