@@ -28,6 +28,15 @@ export function PromptForm({
 }: PromptFormProps) {
   const [value, setValue] = useState<GenerationRequest>(initialValue);
 
+  // Keep the local form state in sync when the parent replaces the input
+  // (e.g. "Use example idea" or restoring from history). Compare the object
+  // reference so this only fires when the parent actually changes the input.
+  const [prevInitial, setPrevInitial] = useState<GenerationRequest>(initialValue);
+  if (prevInitial !== initialValue) {
+    setPrevInitial(initialValue);
+    setValue(initialValue);
+  }
+
   const update = (patch: Partial<GenerationRequest>) => {
     const next = { ...value, ...patch };
     setValue(next);
