@@ -45,8 +45,8 @@ Do **not** put the key in the repository. Instead, set it as a Vercel Environmen
 1. Push the project to GitHub (repo contains no secrets).
 2. Import the repo into Vercel.
 3. In Vercel → Project → **Settings → Environment Variables**, add:
-   - `API_KEY` = your JembatanAI key
-   - `API_BASE_URL` = `https://freeai.jembatanai.com`
+   - `API_KEY` = your Vyce AI key
+   - `API_BASE_URL` = `https://vyceai.com`
    - `API_MODELS` = comma-separated model list (optional)
 4. Redeploy.
 

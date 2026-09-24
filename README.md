@@ -16,7 +16,7 @@ Transform a short idea into a complete, structured, paste-ready prompt for AI pl
 - **Optional** technology stack and constraints.
 - **Output language** selection (English, 中文, Español, Français, Deutsch, 日本語, Português).
 - Generates a **title, summary, paste-ready prompt, and assumptions**.
-- Uses the **JembatanAI FreeAI** OpenAI-compatible API through a secure, server-side API route.
+- Uses the **Vyce AI** OpenAI-compatible API through a secure, server-side API route.
 - **Zod** validation on both request and AI response.
 - **API key stays server-side** and is never exposed to the browser.
 - **Safe model fallback** — tries multiple models if one fails.
@@ -34,7 +34,7 @@ Transform a short idea into a complete, structured, paste-ready prompt for AI pl
 
 - Node.js **18.18+** (tested on Node 24)
 - npm (bundled with Node)
-- A **JembatanAI FreeAI API key** (base URL: `https://freeai.jembatanai.com`)
+- A **Vyce AI API key** (base URL: `https://vyceai.com`)
 
 ## Live deployment
 
@@ -54,7 +54,7 @@ cp .env.example .env.local
 
 # 3. Add your API key to .env.local
 #    API_KEY=your_jembatanai_api_key_here
-#    API_BASE_URL=https://freeai.jembatanai.com
+#    API_BASE_URL=https://vyceai.com
 
 # 4. Run the development server
 npm run dev
@@ -154,8 +154,8 @@ Open http://localhost:3000 in your browser on Windows.
 
 | Variable         | Required | Description                                  |
 |------------------|----------|----------------------------------------------|
-| `API_KEY`        | Yes      | JembatanAI FreeAI access key.                |
-| `API_BASE_URL`   | No       | API base URL (default `https://freeai.jembatanai.com`). |
+| `API_KEY`        | Yes      | Vyce AI access key.                          |
+| `API_BASE_URL`   | No       | API base URL (default `https://vyceai.com`). |
 | `API_MODELS`     | No       | Comma-separated model IDs to try in order (fallback). |
 
 Never commit `.env.local`. It is already in `.gitignore`.
@@ -176,18 +176,20 @@ Never commit `.env.local`. It is already in `.gitignore`.
 
 ## API key
 
-The app uses the **JembatanAI FreeAI** OpenAI-compatible endpoint: `https://freeai.jembatanai.com`.
+The app uses the **Vyce AI** OpenAI-compatible endpoint: `https://vyceai.com`.
 
 The key (`API_KEY`) and base URL (`API_BASE_URL`) are read **only on the server** inside `app/api/generate/route.ts`. The browser never sees them — all generation happens via a server-side API route that calls `/v1/chat/completions`.
 
 Available models (set via `API_MODELS`, comma-separated, tried in order):
 
-- `openai/gpt-5.6-luna`
-- `anthropic/claude-sonnet-5`
-- `deepseek/deepseek-v4-pro-0813`
-- `deepseek/deepseek-v4.1-flash`
-- `z-ai/glm-5.2`
-- `z-ai/glm-5.3-flash`
+- `deepseek-v4.1`
+- `deepseek-v4-flash`
+- `deepseek-v4-flash-lr`
+- `claude-sonnet-4-6`
+- `qwen3.8-flash`
+- `agnes-3.0-flash`
+
+Run `/v1/models` against the base URL for the full, current list.
 
 ---
 
